@@ -1,7 +1,12 @@
 
+//tally variables
+
+var computer=0
+var user= 0
 
 
 
+//Computer rock paper scissor generator
 
 function getComputerChoice(){
 
@@ -9,13 +14,13 @@ function getComputerChoice(){
   
   switch(generator){
     case 0:
-      return "ROCK!"
+      return "ROCK"
       break;
       case 1:
-        return "PAPER!"
+        return "PAPER"
         break;
         case 2:
-          return "SCISSOR!"
+          return "SCISSOR"
           break;
 
   }
@@ -23,61 +28,69 @@ function getComputerChoice(){
 }
 
 
+
+
+//win or lose conditions
+
 function playerSelection(select){
-let computer=0
-let user=0
+
   let choice=select.toUpperCase()
 let respc =getComputerChoice()
+
 console.log("You: " + choice)
+console.log(`computer: ${respc}`)
 
 
-if(respc=== "ROCK!" && choice==="PAPER"){
+if(respc=== "ROCK" && choice==="PAPER"){
   
-  console.log("PC: "+respc)
+  user++
  
-  return "You win!!! Paper beats rock"
-
-}else if(respc === "ROCK!" && respc==="SCISSOR"){
+}else if(respc === "ROCK" && choice==="SCISSOR"){
   
-  console.log("PC:" + respc)
+ computer++
+
+}else if(respc ==="PAPER" && choice ==="ROCK"){
+  
+computer++
+
+}else if(respc==="PAPER" && choice==="SCISSOR"){
  
-return "You lose!!! Rock beats Scissors"
-
-}else if(respc ==="PAPER!" && choice ==="ROCK"){
   
-  console.log("PC:" + respc)
-  
-  return "You lose!! Paper beats rock"
-
-}else if(respc==="PAPER!" && choice==="SCISSOR"){
+  user++
  
-  console.log("PC:" + respc)
-  
-  return "you win!! Scissor beats paper"
 
-}else if(respc=="SCISSOR!" && choice==="ROCK"){
+}else if(respc=="SCISSOR" && choice==="ROCK"){
  
-  console.log("PC: " +respc)
-  return "You win!! Rock beats scissor"
+  user++
 
-}else if(respc==="SCISSOR!" && choice==="PAPER"){
+}else if(respc==="SCISSOR" && choice==="PAPER"){
   
-  console.log("PC: " + respc)
- 
-  return "You lose!! Scissor beats paper anyday"
+ computer++
+
+}else if(respc===choice){
+
+  user++
+
+  computer++
+  
 
 }else{
-  console.log("PC: " + respc)
-  return "I'ts a tie!!!!!"
-}
+
+  user--
+
+  console.log("Play wrong, lose a point!")
 
 }
 
+}
 
+
+//game starter function
 
 function game(){
  
-
+computer= 0
+user= 0
 for(let i= 0; i < 5; i++){
 
 let select=prompt("Rock Paper or scissor")
@@ -85,7 +98,23 @@ playerSelection(select)
 
 }
 
+console.log(winner(computer,user))
 }
+
+
+
+//winner finder function
+function winner(a,b){
+
+return a === b? ` That's tie!!!!!!!!!!!!. to play again write game()`:a>b? ` Computer:${a}   You: ${b}. You LOSE!!!!!!!!!`:` Computer:${a}  You: ${b}. You SAVED THE WORLD CHOSEN ONE!!!!!!!!`
+
+}
+
+game()
+
+
+
+
 
 
 
